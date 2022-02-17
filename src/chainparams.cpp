@@ -53,41 +53,31 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"))
-    (20, uint256("0x00000492be651e07acc7994f7f944e3c4dde2297cfe27493afd045c52cad1a36"))
-    (50, uint256("0x000002285bcb58ca7cfb0a8bc7082c22e2160664e5bf0585c637a484469ffef1"))
-    (75, uint256("0x0000031e9cdf4632b13aaa40edb6dddec9fec15ac376ad839eb0e8d7447d1b0d"))
-    (100, uint256("0x000003f2455798fdece75f97e098242968e76754d8c74bdbe5de90d06969ad3e"))
-    (150, uint256("0x000000ff70be9cf4cd255823c063dd74ee7d3b27df8dff9d0f9663a51b32de24"))
-    (200, uint256("0x0000017868e5e8f890acc015df37ff8d17805269190107b4e7788228f2f0e93f"))
-    (790, uint256("0xe1efc8c560e3fba913cb44edd3768bc0e114edfdec32b3f517d3e4f6ddf66bb5"));
-//    (300, uint256("0x9a0faa4d2f0342d95017511a3e620775f9a2f56635ad5c59cf61d9cc1d1804e4"))
-//    (500, uint256("0x5fc9a775b58c444811e2183ef46defc932a13344595ec3759400bc54ae0c2048"))
-//    (15000, uint256("0x86af6be0db6343e22f9b9c0d7b526cc9308fc62e4285168804b9710f55659fbe"));
-	
+    (0, uint256("0000086041e4ff304ec6349b4270dc53a354b5a44f3216278aae188fe862ad35"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1556095899, // * UNIX timestamp of last checkpoint block
-    1391,    // * total number of transactions between genesis and last checkpoint
+    1644193942, // * UNIX timestamp of last checkpoint block
+    0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    2000        // * estimated number of transactions per day after checkpoint
+    0        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"));
+    boost::assign::map_list_of
+    (0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1556047635,
+    1644193942,
     0,
-    250};
+    0};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"));
+    boost::assign::map_list_of(0, uint256("0x001"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1556047635,
+    1644193942,
     0,
-    100};
+    0};
 
 libzerocoin::ZerocoinParams* CChainParams::Zerocoin_Params() const
 {
@@ -112,13 +102,13 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x3c;
-        pchMessageStart[1] = 0x4d;
-        pchMessageStart[2] = 0x5f;
-        pchMessageStart[3] = 0x6b;
-        vAlertPubKey = ParseHex("0444c17bb301c3a3b2bf166a0815e73b0c715976df4ea972e86df1db0f58ab69bc7188661b1d53667f52d8cc9ce9e9037b7880c9ddf4bc664c7b2fbad349c9d94c");
-        nP2pPort = 9069;
-        nRpcPort = 6990;
+        pchMessageStart[0] = 0x5f;
+        pchMessageStart[1] = 0xd5;
+        pchMessageStart[2] = 0x4c;
+        pchMessageStart[3] = 0xb3;
+        vAlertPubKey = ParseHex("046b02e9e333ac63cc7d367a5244a33ff1709fa698f524749b4fb7851d4fa812b3781ff3d2381b71fd27c5fcb3bffe0f31b56be485de9ffb6ab3b709996a10062d");
+        nP2pPort = 6105;
+        nRpcPort = 5016;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // Hotchain starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -128,12 +118,12 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // Hotchain: 1 day
         nTargetSpacing = 1 * 60;  // Hotchain: 1 minute
-        nMaturity = 10;
+        nMaturity = 6;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 21000000 * COIN;
+        nMaxMoneyOut = 21000000000 * COIN;
 
         /** Height or Time Based Activations **/
-        nLastPoWBlock = 200;
+        nLastPoWBlock = 100;
         //nModifierUpdateBlock = 1;
         //nZerocoinStartHeight = 210;
         //nZerocoinStartTime = 1556047635; 
@@ -151,21 +141,20 @@ public:
          * Build the genesis block. Note that the output of the genesis coinbase cannot
          * be spent as it did not originally exist in the database.
          */
-        const char* pszTimestamp = "Il 3/2/2019 ho creato Hotchain per il sollazzo di tutti!";
+       const char* pszTimestamp = "Devilking6105 says love life and inspire others";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c5bb83de4a978725c05fe2de5aeaf3522f87fdb10e074ccc4182b0408ac85e1278c17649171639506407e23bf3614a7ad464eed7d5c54ebfd3cb068db77622cb") << OP_CHECKSIG;
+        txNew.vout[0].nValue = 5000 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("047eac5e017985914ae18805ce5f3b29b79647db903a99c0244295a83081c567b3ea82238ab1e8bbc26c91578321bd1136cc4385df4572b703d16623d50a3a819e") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
-        genesis.nVersion = 4;
-        genesis.nAccumulatorCheckpoint = 0;
-        genesis.nTime = 1556047635;
-        genesis.nBits = 504365040;
-        genesis.nNonce = 80512;
+        genesis.nVersion = 1;
+        genesis.nTime = 1644193942;
+        genesis.nBits = 0x1e0ffff0;
+        genesis.nNonce = 22225380;
 
         hashGenesisBlock = genesis.GetHash();
         if (regenerate) {
@@ -187,19 +176,17 @@ public:
                 std::cout << " merklehash: 0x"  << genesis.hashMerkleRoot.ToString().c_str() <<  "\n";
             }
         } else {
-            assert(hashGenesisBlock == uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"));
-            assert(genesis.hashMerkleRoot == uint256("0x5d68db3baf3175ec87588e5dce18cdad7b2fc568b7303b27b10b068915742ce7"));
+  	   assert(hashGenesisBlock == uint256("0x0000086041e4ff304ec6349b4270dc53a354b5a44f3216278aae188fe862ad35"));
+           assert(genesis.hashMerkleRoot == uint256("0xa233372d6684ae95332b618af7a8df6a8cd5e10391ed4ab8d22f738920916727"));
         }
 
+        vFixedSeeds.clear();
+        vSeeds.clear();
+     //   vSeeds.push_back(CDNSSeedData("node-21.hotchain.me", "node-21.hotchain.me"));
 
-        vSeeds.push_back(CDNSSeedData("node-21.hotchain.me", "node-21.hotchain.me"));
-        vSeeds.push_back(CDNSSeedData("node-22.hotchain.me", "node-22.hotchain.me"));
-        vSeeds.push_back(CDNSSeedData("node-23.hotchain.me", "node-23.hotchain.me"));
-        vSeeds.push_back(CDNSSeedData("node-24.hotchain.me", "node-24.hotchain.me"));
-        vSeeds.push_back(CDNSSeedData("node-25.hotchain.me", "node-25.hotchain.me"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 41); // Hotchain's wallet address starts with a h
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 40); // 7
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25); // Hotchain's wallet address starts with a h
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 26); // 7
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 40); // 7
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
@@ -228,11 +215,11 @@ public:
             "31438167899885040445364023527381951378636564391212010397122822120720357";
         nMaxZerocoinSpendsPerTransaction = 7; // Assume about 20kb each
         nMinZerocoinMintFee = 1 * CENT; //high fee required for zerocoin mints
-        nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
+        nMintRequiredConfirmations = 1; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
-        nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zhotx to be stakable
+        nZerocoinRequiredStakeDepth = 6; //The required confirmations for a zhotx to be stakable
         nStakeMinAge = 60 * 60; //The number of seconds that a utxo must be old before it can qualify for staking
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
     }
@@ -258,9 +245,9 @@ public:
         pchMessageStart[1] = 0x7e;
         pchMessageStart[2] = 0xe5;
         pchMessageStart[3] = 0xd4;
-        vAlertPubKey = ParseHex("04c6714cd6fe2de4d5757b391785a7459cc50650612198f5ab96fa2b33dbf476a950d4ac2b51718fd75e0da32ac61d67bba4a63c0bea415e704a8f505043815fad");
-        nP2pPort = 19069;
-        nRpcPort = 16990;
+        vAlertPubKey = ParseHex("048f050ccef3ee9034ac9034597ad72d846c9325e03207549c5639d80baaf057089e75e3a3ec659dd58de923d1877c299f9f4be1fbeeaf46230bfeb39325173dd0");
+        nP2pPort = 1228;
+        nRpcPort = 8221;
         nEnforceBlockUpgradeMajority = 4320; // 75%
         nRejectBlockOutdatedMajority = 5472; // 95%
         nToCheckBlockUpgradeMajority = 5760; // 4 days
@@ -272,8 +259,8 @@ public:
         nMaxMoneyOut = 21000000 * COIN;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1556047635;
-        genesis.nNonce = 80512;
+        genesis.nTime = 1644193942;
+        genesis.nNonce = 22225380;
 
         hashGenesisBlock = genesis.GetHash();
         if (regenerate) {
@@ -296,16 +283,12 @@ public:
 
             }
         } else {
-            assert(hashGenesisBlock == uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"));
-            assert(genesis.hashMerkleRoot == uint256("0x5d68db3baf3175ec87588e5dce18cdad7b2fc568b7303b27b10b068915742ce7"));
+        assert(hashGenesisBlock == uint256("0x0000086041e4ff304ec6349b4270dc53a354b5a44f3216278aae188fe862ad35"));
+        assert(genesis.hashMerkleRoot == uint256("0xa233372d6684ae95332b618af7a8df6a8cd5e10391ed4ab8d22f738920916727"));
         }
 
+        vFixedSeeds.clear();
         vSeeds.clear();
-         vSeeds.push_back(CDNSSeedData("tnseeder-01.Hotchain.io", "tnseeder-01.Hotchain.io"));
-         vSeeds.push_back(CDNSSeedData("testnode-01.Hotchain.io", "testnode-01.Hotchain.io"));
-         vSeeds.push_back(CDNSSeedData("testnode-02.Hotchain.io", "testnode-02.Hotchain.io"));
-         vSeeds.push_back(CDNSSeedData("testnode-03.Hotchain.io", "testnode-03.Hotchain.io"));
-         vSeeds.push_back(CDNSSeedData("testnode-04.Hotchain.io", "testnode-04.Hotchain.io"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 17); // Testnet Hotchain addresses start with '7'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);  // Testnet Hotchain script addresses start with '8'
@@ -359,10 +342,10 @@ public:
         nTargetTimespan = 24 * 60 * 60; // Hotchain: 1 day
         nTargetSpacing = 1 * 60;        // Hotchain: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1556047635;
-        genesis.nBits = 504365040;
-        genesis.nNonce = 80512;
-        nP2pPort = 51476;
+        genesis.nTime = 1644193942;
+        genesis.nBits = 0x1e0ffff0;
+        genesis.nNonce = 22225380;
+        nP2pPort = 1553;
 
         hashGenesisBlock = genesis.GetHash();
         if (regenerate) {
@@ -385,8 +368,8 @@ public:
 
             }
         } else {
-            assert(hashGenesisBlock == uint256("0x639b64c0178c2b6629892024f79633fe9cd62ba6457cb5e2dd08d0c1e76d9dc4"));
-            assert(genesis.hashMerkleRoot == uint256("0x5d68db3baf3175ec87588e5dce18cdad7b2fc568b7303b27b10b068915742ce7"));
+        assert(hashGenesisBlock == uint256("0x0000086041e4ff304ec6349b4270dc53a354b5a44f3216278aae188fe862ad35"));
+        assert(genesis.hashMerkleRoot == uint256("0xa233372d6684ae95332b618af7a8df6a8cd5e10391ed4ab8d22f738920916727"));
         }
         if (regenerate)
             exit(0);
