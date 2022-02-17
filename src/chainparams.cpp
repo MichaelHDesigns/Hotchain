@@ -180,9 +180,9 @@ public:
             assert(genesis.hashMerkleRoot == uint256("0x5d68db3baf3175ec87588e5dce18cdad7b2fc568b7303b27b10b068915742ce7"));
         }
 
-        vFixedSeeds.clear();
-        vSeeds.clear();
-     //   vSeeds.push_back(CDNSSeedData("node-21.hotchain.me", "node-21.hotchain.me"));
+      //  vFixedSeeds.clear();
+      //  vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("159.223.150.209", "159.223.150.209"));
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 25); // Hotchain's wallet address starts with a h
