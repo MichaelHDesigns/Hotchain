@@ -21,8 +21,8 @@ HOTX is a forefront cryptocurrency forked from the latest PIVX codebase. It is t
 
 
 Mainnet Ports :
-  - P2P 9069
-  - RPC 6990
+  - P2P 6105
+  - RPC 5016
 
 Testnet Ports :
   - P2P 19069
